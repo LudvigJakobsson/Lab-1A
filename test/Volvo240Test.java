@@ -42,7 +42,6 @@ public class Volvo240Test {
                     volvo.turnRight();
                     assertEquals(i, volvo.getCurrentDirection());
             }
-
         }
     }
 
@@ -58,6 +57,11 @@ public class Volvo240Test {
     public void testDecrementSpeed(){
         volvo.decrementSpeed(2);
         assertEquals(0, volvo.getCurrentSpeed(), 0.000001);
+    }
+
+    @Test
+    public void testGetNrDoors() {
+        assertEquals(2, volvo.getNrDoors());
     }
 
 }

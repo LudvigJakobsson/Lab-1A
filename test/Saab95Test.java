@@ -57,12 +57,18 @@ public class Saab95Test {
         assertEquals(saab.getEnginePower() * 0.01 , saab.speedFactor(), 0.000001);
 
     }
-    
+
     @Test
     public void testDecrementSpeed(){
         saab.incrementSpeed(2);
         saab.decrementSpeed(2);
         assertEquals(0, saab.getCurrentSpeed(), 0.000001);
     }
+
+    @Test
+    public void testGetNrDoors() {
+        assertEquals(2, saab.getNrDoors());
+    }
+
 
 }
