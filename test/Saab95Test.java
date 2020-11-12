@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class Saab95Test {
     private Saab95 saab;
 
@@ -10,6 +11,9 @@ public class Saab95Test {
         saab = new Saab95();
     }
 
+    /*** Testing move method of car
+     *
+     */
     @Test
     public void testMove() {
         saab.move();
@@ -22,6 +26,9 @@ public class Saab95Test {
         assertEquals(0.1, saab.getY(), 0.00001);
     }
 
+    /*** Testing turnLeft method of car
+     *
+     */
     @Test
     public void testTurnLeft() {
         for(int i = 3; i >= 0; --i) {
@@ -30,6 +37,9 @@ public class Saab95Test {
         }
     }
 
+    /*** Testing turnRight method of car
+     *
+     */
     @Test
     public void testTurnRight() {
         for (int i = 1; i <= 4; i++) {
@@ -45,6 +55,9 @@ public class Saab95Test {
         }
     }
 
+    /*** Testing incrementSpeed method of car
+     *
+     */
     @Test
     public void testIncrementSpeed(){
         saab.incrementSpeed(2);
@@ -58,6 +71,9 @@ public class Saab95Test {
 
     }
 
+    /*** Testing decrementSpeed method of car
+     *
+     */
     @Test
     public void testDecrementSpeed(){
         saab.incrementSpeed(2);
@@ -65,6 +81,9 @@ public class Saab95Test {
         assertEquals(0, saab.getCurrentSpeed(), 0.000001);
     }
 
+    /*** Testing getNrDoors method of car
+     *
+     */
     @Test
     public void testGetNrDoors() {
         assertEquals(2, saab.getNrDoors());

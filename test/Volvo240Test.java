@@ -10,6 +10,9 @@ public class Volvo240Test {
         volvo = new Volvo240();
     }
 
+    /***
+     * Testing move method of car
+     */
     @Test
     public void testMove() {
         volvo.move();
@@ -22,6 +25,9 @@ public class Volvo240Test {
         assertEquals(0.1, volvo.getY(), 0.00001);
     }
 
+    /***
+     * Testing turnLeft method of car
+     */
     @Test
     public void testTurnLeft() {
         for(int i = 3; i >= 0; --i) {
@@ -30,6 +36,9 @@ public class Volvo240Test {
         }
     }
 
+    /***
+     * Testing turnRight method of car
+     */
     @Test
     public void testTurnRight() {
         for (int i = 1; i <= 4; i++) {
@@ -45,6 +54,9 @@ public class Volvo240Test {
         }
     }
 
+    /***
+     * Testing incrementSpeed method of car
+     */
     @Test
     public void testIncrementSpeed(){
         volvo.incrementSpeed(2);
@@ -53,12 +65,19 @@ public class Volvo240Test {
         volvo.incrementSpeed(10000);
         assertEquals(volvo.getEnginePower(), volvo.getCurrentSpeed(), 0.000001);
     }
+
+    /***
+     * Testing decrementSpeed method of car
+     */
     @Test
     public void testDecrementSpeed(){
         volvo.decrementSpeed(2);
         assertEquals(0, volvo.getCurrentSpeed(), 0.000001);
     }
 
+    /***
+     * Testing getNrDoors method of car
+     */
     @Test
     public void testGetNrDoors() {
         assertEquals(2, volvo.getNrDoors());
