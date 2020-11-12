@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import java.awt.*;
 
 public class Volvo240Test {
     private Volvo240 volvo;
@@ -11,7 +12,7 @@ public class Volvo240Test {
     }
 
     /***
-     * Testing move method of car
+     * Testing move() method of car
      */
     @Test
     public void testMove() {
@@ -26,7 +27,7 @@ public class Volvo240Test {
     }
 
     /***
-     * Testing turnLeft method of car
+     * Testing turnLeft() method of car
      */
     @Test
     public void testTurnLeft() {
@@ -37,7 +38,7 @@ public class Volvo240Test {
     }
 
     /***
-     * Testing turnRight method of car
+     * Testing turnRight() method of car
      */
     @Test
     public void testTurnRight() {
@@ -55,7 +56,7 @@ public class Volvo240Test {
     }
 
     /***
-     * Testing incrementSpeed method of car
+     * Testing incrementSpeed() method of car
      */
     @Test
     public void testIncrementSpeed(){
@@ -67,7 +68,7 @@ public class Volvo240Test {
     }
 
     /***
-     * Testing decrementSpeed method of car
+     * Testing decrementSpeed() method of car
      */
     @Test
     public void testDecrementSpeed(){
@@ -76,11 +77,50 @@ public class Volvo240Test {
     }
 
     /***
-     * Testing getNrDoors method of car
+     * Testing getNrDoors() method of car
      */
     @Test
     public void testGetNrDoors() {
-        assertEquals(2, volvo.getNrDoors());
+        assertEquals(4, volvo.getNrDoors());
+    }
+    /*** Testing getColor() method of car
+     *
+     */
+    @Test
+    public void testGetColor() {
+        assertEquals(Color.black, volvo.getColor());
+    }
+    /*** Testing setColor() method of car
+     *
+     */
+    @Test
+    public void testSetColor() {
+        volvo.setColor(Color.red);
+        assertEquals(Color.red, volvo.getColor());
+    }
+    /*** Testing gas() method of car
+     *
+     */
+    @Test
+    public void testGas() {
+        volvo.gas(1);
+        assertEquals(volvo.speedFactor(), volvo.getCurrentSpeed(), 0.000001);
+
+        volvo.gas(2);
+        assertEquals(volvo.speedFactor(), volvo.getCurrentSpeed(), 0.000001);
+    }
+    /*** Testing brake() method of car
+     *
+     */
+    @Test
+    public void testBrake() {
+        volvo.gas(1);
+        volvo.brake(2);
+        assertEquals(volvo.speedFactor(), volvo.getCurrentSpeed(), 0.000001);
+
+        volvo.brake(1);
+        assertEquals(0, volvo.getCurrentSpeed(), 0.00001);
+
     }
 
 }

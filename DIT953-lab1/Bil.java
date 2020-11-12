@@ -154,7 +154,7 @@ public abstract class Bil implements Movable {
      * @param amount of gas, restricted to values [0,1]
      */
     public void gas(double amount){
-        if (amount >= 0 || amount <= 1){
+        if (amount >= 0 && amount <= 1){
             incrementSpeed(amount);
         }
         else {
@@ -164,10 +164,10 @@ public abstract class Bil implements Movable {
 
     /*** Method for decreasing the car
      *
-     * @param amount of braking, restricted to values [0,1]
+     * @param amount of braking restricted to values [0,1]
      */
     public void brake(double amount){
-        if (amount >= 0 || amount <= 1){
+        if (amount >= 0 && amount <= 1){
             decrementSpeed(amount);
         }
         else {

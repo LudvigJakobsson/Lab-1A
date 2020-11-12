@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import java.awt.*;
 
 
 public class Saab95Test {
@@ -11,7 +12,7 @@ public class Saab95Test {
         saab = new Saab95();
     }
 
-    /*** Testing move method of car
+    /*** Testing move() method of car
      *
      */
     @Test
@@ -26,7 +27,7 @@ public class Saab95Test {
         assertEquals(0.1, saab.getY(), 0.00001);
     }
 
-    /*** Testing turnLeft method of car
+    /*** Testing turnLeft() method of car
      *
      */
     @Test
@@ -37,7 +38,7 @@ public class Saab95Test {
         }
     }
 
-    /*** Testing turnRight method of car
+    /*** Testing turnRight() method of car
      *
      */
     @Test
@@ -55,7 +56,7 @@ public class Saab95Test {
         }
     }
 
-    /*** Testing incrementSpeed method of car
+    /*** Testing incrementSpeed() method of car
      *
      */
     @Test
@@ -71,7 +72,7 @@ public class Saab95Test {
 
     }
 
-    /*** Testing decrementSpeed method of car
+    /*** Testing decrementSpeed() method of car
      *
      */
     @Test
@@ -81,13 +82,51 @@ public class Saab95Test {
         assertEquals(0, saab.getCurrentSpeed(), 0.000001);
     }
 
-    /*** Testing getNrDoors method of car
+    /*** Testing getNrDoors() method of car
      *
      */
     @Test
     public void testGetNrDoors() {
         assertEquals(2, saab.getNrDoors());
     }
+    /*** Testing getColor() method of car
+     *
+     */
+    @Test
+    public void testGetColor() {
+        assertEquals(Color.red, saab.getColor());
+    }
+    /*** Testing setColor() method of car
+     *
+     */
+    @Test
+    public void testSetColor() {
+        saab.setColor(Color.black);
+        assertEquals(Color.black, saab.getColor());
+    }
+    /*** Testing gas() method of car
+     *
+     */
+    @Test
+    public void testGas() {
+        saab.gas(1);
+        assertEquals(saab.speedFactor(), saab.getCurrentSpeed(), 0.000001);
 
+        saab.gas(2);
+        assertEquals(saab.speedFactor(), saab.getCurrentSpeed(), 0.000001);
+    }
+    /*** Testing brake() method of car
+     *
+     */
+    @Test
+    public void testBrake() {
+        saab.gas(1);
+        saab.brake(2);
+        assertEquals(saab.speedFactor(), saab.getCurrentSpeed(), 0.000001);
+
+        saab.brake(1);
+        assertEquals(0, saab.getCurrentSpeed(), 0.00001);
+
+    }
 
 }
