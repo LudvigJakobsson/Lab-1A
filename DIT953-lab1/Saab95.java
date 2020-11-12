@@ -5,24 +5,9 @@ public class Saab95 extends Bil implements Movable{
 
     private boolean turboOn = false;
 
-    
-    public Saab95(){
+    public Saab95() {
         super(2, 125, Color.red, "Saab95");
         stopEngine();
-        String hej = "Hej Ludde";
-<<<<<<< HEAD
-=======
-    }
-
-    public double getX(){
-        return x;
-    }
-    public double getY(){
-        return y;
-    }
-    public int getCurrentDirection(){
-        return currentDirection;
->>>>>>> 05e3018c1dbf7ca261b246405da9441b1c59e335
     }
 
     public void setTurboOn(){
