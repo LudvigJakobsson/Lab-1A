@@ -12,6 +12,7 @@ public class Saab95 extends Bil implements Movable{
     public Saab95(){
         super(2, 125, Color.red, "Saab95");
         stopEngine();
+        String hej = "Hej Ludde";
     }
 
     public double getX(){
