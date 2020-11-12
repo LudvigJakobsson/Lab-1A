@@ -91,6 +91,7 @@ public abstract class Bil implements Movable {
             incrementSpeed(amount);
         }
         else {
+            System.out.print("hej");
             return;
         }
     }
