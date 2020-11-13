@@ -87,14 +87,19 @@ public   abstract class Bil implements Movable {
      * @param amount of which to increase the speed
      */
     public void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
+        if (amount > 0) {
+            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
+        }
     }
 
     /*** Decreases the speed of car
      * @param amount of which to decrease the speed
      */
     public void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        if (amount > 0) {
+            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+        }
+        return;
     }
 
     /*** Getter method for x coordinate
