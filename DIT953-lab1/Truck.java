@@ -1,22 +1,26 @@
 import java.awt.*;
 
-/***
- *
- */
-public class Car implements IVehicle, Movable {
-    private double currentSpeed;
+public class Truck implements IVehicle, Movable {
     private Vehicle parent;
+    private Trailer trailer;
+    private boolean hasTrailer;
 
-
-    /*** Creates a car with the specified attributes
-     * @param nrDoors Number of doors of car
-     * @param enginePower Engine power of car
-     * @param color Color of car
-     * @param modelName Name of car model
-     */
-    Car(int nrDoors, double enginePower, Color color, String modelName) {
+    Truck(int nrDoors, double enginePower, Color color, String modelName) {
         this.parent = new Vehicle(nrDoors, enginePower, color, modelName);
     }
+
+    /*** Getter method for number of doors
+     *
+     * @return Returns number of doors of the vehicle
+     */
+    public int getNrDoors(){
+        return parent.getNrDoors();
+    }
+
+    /*** Getter method for engine power
+     *
+     * @return Returns engine power
+     */
     public double getEnginePower() {
         return parent.getEnginePower();
     }
@@ -33,9 +37,6 @@ public class Car implements IVehicle, Movable {
      *
      * @return Returns number of doors
      */
-    public int getNrDoors(){
-        return parent.getNrDoors();
-    }
     public Color getColor(){
         return parent.getColor();
     }
@@ -51,7 +52,7 @@ public class Car implements IVehicle, Movable {
     /*** Starts car engine
      *
      */
-    public void startEngine(){
+    public void startEngine() {
         parent.startEngine();
     }
 
@@ -64,9 +65,11 @@ public class Car implements IVehicle, Movable {
     /*** Increases the speed of car
      * @param amount of which to increase the speed
      */
-    @Override
     public void incrementSpeed(double amount) {
-        if (amount > 0) {
+        if (hasTrailer == false) {
+            parent.incrementSpeed(amount);
+        }
+        else if(trailer.getPosition() == 0){
             parent.incrementSpeed(amount);
         }
     }
@@ -75,7 +78,7 @@ public class Car implements IVehicle, Movable {
     /*** Decreases the speed of car
      * @param amount of which to decrease the speed
      */
-    public void decrementSpeed(double amount){
+    public void decrementSpeed(double amount) {
         parent.decrementSpeed(amount);
     }
 
@@ -85,6 +88,7 @@ public class Car implements IVehicle, Movable {
     public double getX(){
         return parent.getX();
     }
+
 
     /*** Getter method for y coordinate
      *
@@ -144,5 +148,31 @@ public class Car implements IVehicle, Movable {
     public void brake(double amount){
         parent.brake(amount);
     }
+
+    //public void setCarTrailer(){
+    //    if (hasTrailer = false) {
+    //        this.trailer = new CarTrailer();
+    //        hasTrailer = true;
+    //    }
+    //}
+
+    public void setTruckBed() {
+        if (hasTrailer = false) {
+            trailer = new TruckBed();
+            hasTrailer = true;
+        }
+    }
+
+    public void setTrailerPosition(double position) {
+        if(parent.getCurrentSpeed() == 0) {
+            trailer.setPosition(position);
+        }
+    }
+
 }
+
+
+
+
+
 
