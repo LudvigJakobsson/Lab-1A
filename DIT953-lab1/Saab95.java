@@ -2,7 +2,7 @@ import java.awt.*;
 import java.sql.ClientInfoStatus;
 
 
-public class Saab95 extends Bil implements Movable{
+public class Saab95 extends Car implements Movable{
 
     private boolean turboOn = false;
 

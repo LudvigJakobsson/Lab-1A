@@ -3,7 +3,7 @@ import java.awt.*;
 /***
  *
  */
-public   abstract class Bil implements Movable {
+public   abstract class Car implements Movable {
     
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -21,7 +21,7 @@ public   abstract class Bil implements Movable {
      * @param color Color of car
      * @param modelName Name of car model
      */
-    Bil (int nrDoors, double enginePower, Color color, String modelName){
+    Car (int nrDoors, double enginePower, Color color, String modelName){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
