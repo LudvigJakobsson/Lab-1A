@@ -19,4 +19,6 @@ public class Volvo240 extends Car implements Movable{
         return getEnginePower() * 0.01 * trimFactor;
     }
 
+
+
 }

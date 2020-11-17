@@ -17,13 +17,13 @@ public class Volvo240Test {
     @Test
     public void testMove() {
         volvo.move();
-        assertEquals(0, volvo.getX(), 0.00001);
-        assertEquals(0, volvo.getY(), 0.00001);
+        assertEquals(0, volvo.getLocation().getX(), 0.00001);
+        assertEquals(0, volvo.getLocation().getY(), 0.00001);
 
         volvo.startEngine();
         volvo.move();
-        assertEquals(0, volvo.getX(), 0.00001);
-        assertEquals(0.1, volvo.getY(), 0.00001);
+        assertEquals(0, volvo.getLocation().getX(), 0.00001);
+        assertEquals(0.1, volvo.getLocation().getY(), 0.00001);
     }
 
     /***
@@ -60,9 +60,6 @@ public class Volvo240Test {
      */
     @Test
     public void testIncrementSpeed(){
-        volvo.incrementSpeed(2);
-        assertEquals(volvo.speedFactor()*2 , volvo.getCurrentSpeed(), 0.000001);
-
         volvo.incrementSpeed(10000);
         assertEquals(volvo.getEnginePower(), volvo.getCurrentSpeed(), 0.000001);
     }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 public interface IVehicle {
     public int getNrDoors();
@@ -46,17 +47,6 @@ public interface IVehicle {
      */
     void decrementSpeed(double amount);
 
-    /*** Getter method for x coordinate
-     * @return Returns x coordinate
-     */
-    double getX();
-
-    /*** Getter method for y coordinate
-     *
-     * @return Returns y coordinate
-     */
-    double getY();
-
     /*** Getter method for current location of car
      *
      * @return Returns cars current location
@@ -68,6 +58,8 @@ public interface IVehicle {
      * @return Returns the speed factor
      */
     double speedFactor();
+
+    Point2D.Double getLocation();
 
     /*** Method for moving car in the current direction
      *

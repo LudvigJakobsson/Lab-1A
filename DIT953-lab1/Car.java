@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /***
  *
@@ -66,32 +67,30 @@ public class Car implements IVehicle, Movable {
      */
     @Override
     public void incrementSpeed(double amount) {
-        if (amount > 0) {
-            parent.incrementSpeed(amount);
+        if (amount >= 0 && amount <= 1) {
+            currentSpeed = Math.max(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
         }
     }
-
 
     /*** Decreases the speed of car
      * @param amount of which to decrease the speed
      */
     public void decrementSpeed(double amount){
-        parent.decrementSpeed(amount);
+        if (amount >= 0 && amount <= 1) {
+            currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+        }
     }
 
     /*** Getter method for x coordinate
      * @return Returns x coordinate
      */
-    public double getX(){
-        return parent.getX();
+
+    public Point2D.Double getLocation(){
+        return parent.getLocation();
     }
 
-    /*** Getter method for y coordinate
-     *
-     * @return Returns y coordinate
-     */
-    public double getY(){
-        return parent.getY();
+    public void setLocation(Point2D.Double location) {
+        parent.setLocation(location);
     }
 
     /*** Getter method for current location of car
@@ -134,7 +133,7 @@ public class Car implements IVehicle, Movable {
      * @param amount of gas, restricted to values [0,1]
      */
     public void gas(double amount){
-        parent.gas(amount);
+        incrementSpeed(amount);
     }
 
     /*** Method for decreasing the car
@@ -142,7 +141,7 @@ public class Car implements IVehicle, Movable {
      * @param amount of braking restricted to values [0,1]
      */
     public void brake(double amount){
-        parent.brake(amount);
+        decrementSpeed(amount);
     }
 }
 

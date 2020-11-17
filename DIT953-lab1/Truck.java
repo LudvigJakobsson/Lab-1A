@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 public class Truck implements IVehicle, Movable {
     private Vehicle parent;
@@ -7,6 +8,7 @@ public class Truck implements IVehicle, Movable {
 
     Truck(int nrDoors, double enginePower, Color color, String modelName) {
         this.parent = new Vehicle(nrDoors, enginePower, color, modelName);
+        hasTrailer = false;
     }
 
     /*** Getter method for number of doors
@@ -69,11 +71,10 @@ public class Truck implements IVehicle, Movable {
         if (hasTrailer == false) {
             parent.incrementSpeed(amount);
         }
-        else if(trailer.getPosition() == 0){
+        else if(trailer.getRampPosition() == 0){
             parent.incrementSpeed(amount);
         }
     }
-
 
     /*** Decreases the speed of car
      * @param amount of which to decrease the speed
@@ -82,20 +83,8 @@ public class Truck implements IVehicle, Movable {
         parent.decrementSpeed(amount);
     }
 
-    /*** Getter method for x coordinate
-     * @return Returns x coordinate
-     */
-    public double getX(){
-        return parent.getX();
-    }
-
-
-    /*** Getter method for y coordinate
-     *
-     * @return Returns y coordinate
-     */
-    public double getY(){
-        return parent.getY();
+    public Point2D.Double getLocation(){
+        return parent.getLocation();
     }
 
     /*** Getter method for current location of car
@@ -119,6 +108,9 @@ public class Truck implements IVehicle, Movable {
      */
     public void move(){
         parent.move();
+        if (hasTrailer) {
+            trailer.setLocation(this.getLocation());
+        }
     }
 
     /*** Method for turning the vehicle lefT
@@ -138,7 +130,12 @@ public class Truck implements IVehicle, Movable {
      * @param amount of gas, restricted to values [0,1]
      */
     public void gas(double amount){
-        parent.gas(amount);
+        if (amount >= 0 && amount <= 1){
+            incrementSpeed(amount);
+        }
+        else {
+            return;
+        }
     }
 
     /*** Method for decreasing the car
@@ -149,25 +146,24 @@ public class Truck implements IVehicle, Movable {
         parent.brake(amount);
     }
 
-    //public void setCarTrailer(){
-    //    if (hasTrailer = false) {
-    //        this.trailer = new CarTrailer();
-    //        hasTrailer = true;
-    //    }
-    //}
-
-    public void setTruckBed() {
+    public void setCarTrailer(int capacity){
         if (hasTrailer = false) {
-            trailer = new TruckBed();
+            this.trailer = new CarTrailer(capacity , this);
             hasTrailer = true;
         }
     }
 
-    public void setTrailerPosition(double position) {
-        if(parent.getCurrentSpeed() == 0) {
-            trailer.setPosition(position);
+    public void setTruckBed() {
+        if (hasTrailer == false) {
+            this.trailer = new TruckBed(this);
+            hasTrailer = true;
         }
     }
+
+    public Trailer getTrailer() {
+        return trailer;
+    }
+
 
 }
 

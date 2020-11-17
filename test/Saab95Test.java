@@ -18,13 +18,13 @@ public class Saab95Test {
     @Test
     public void testMove() {
         saab.move();
-        assertEquals(0, saab.getX(), 0.00001);
-        assertEquals(0, saab.getY(), 0.00001);
+        assertEquals(0, saab.getLocation().getX(), 0.00001);
+        assertEquals(0, saab.getLocation().getY(), 0.00001);
 
         saab.startEngine();
         saab.move();
-        assertEquals(0, saab.getX(), 0.00001);
-        assertEquals(0.1, saab.getY(), 0.00001);
+        assertEquals(0, saab.getLocation().getX(), 0.00001);
+        assertEquals(0.1, saab.getLocation().getY(), 0.00001);
     }
 
     /*** Testing turnLeft() method of car

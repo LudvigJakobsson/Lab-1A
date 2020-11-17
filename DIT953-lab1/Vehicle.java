@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /***
  *
@@ -10,8 +11,7 @@ public class Vehicle implements IVehicle, Movable {
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
-    private double x;
-    private double y;
+    private Point2D.Double location;
     private double[][] directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
     private int currentDirection = 0;
 
@@ -26,6 +26,13 @@ public class Vehicle implements IVehicle, Movable {
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.location = new Point2D.Double();
+    }
+    public Point2D.Double getLocation(){
+        return location;
+    }
+    public void setLocation(Point2D.Double location){
+        this.location = location;
     }
 
     /*** Getter method for number of doors
@@ -85,7 +92,7 @@ public class Vehicle implements IVehicle, Movable {
      * @param amount of which to increase the speed
      */
     public void incrementSpeed(double amount) {
-        if (amount > 0) {
+        if (amount >= 0 && amount <= 1) {
             currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
         }
     }
@@ -94,22 +101,12 @@ public class Vehicle implements IVehicle, Movable {
      * @param amount of which to decrease the speed
      */
     public void decrementSpeed(double amount){
-        if (amount > 0) {
+        if (amount >= 0 && amount <= 1) {
             currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
         }
         return;
     }
 
-    /*** Getter method for x coordinate
-     * @return Returns x coordinate
-     */
-    public double getX() {return x;}
-
-    /*** Getter method for y coordinate
-     *
-     * @return Returns y coordinate
-     */
-    public double getY() {return y;}
 
     /*** Getter method for current location of car
      *
@@ -129,8 +126,8 @@ public class Vehicle implements IVehicle, Movable {
      *
      */
     public void move() {
-        x = x + directions[currentDirection][0] * currentSpeed;
-        y = y + directions[currentDirection][1] * currentSpeed;
+        location.setLocation(location.getX() + directions[currentDirection][0] * currentSpeed,
+                location.getY() + directions[currentDirection][1] * currentSpeed);
     }
 
     /*** Method for turning the vehicle lefT
@@ -156,12 +153,7 @@ public class Vehicle implements IVehicle, Movable {
      * @param amount of gas, restricted to values [0,1]
      */
     public void gas(double amount){
-        if (amount >= 0 && amount <= 1){
-            incrementSpeed(amount);
-        }
-        else {
-            return;
-        }
+        incrementSpeed(amount);
     }
 
     /*** Method for decreasing the car
@@ -169,11 +161,6 @@ public class Vehicle implements IVehicle, Movable {
      * @param amount of braking restricted to values [0,1]
      */
     public void brake(double amount){
-        if (amount >= 0 && amount <= 1){
-            decrementSpeed(amount);
-        }
-        else {
-            return;
-        }
+        decrementSpeed(amount);
     }
 }

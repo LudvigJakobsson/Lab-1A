@@ -7,32 +7,35 @@ import java.awt.*;
 public class ScaniaTest {
 
     private Scania scania;
+    private Trailer trailer;
 
     @Before
     public void setup() {
         scania = new Scania();
+        trailer = scania.getTrailer();
     }
 
     @Test
-    public void testSetAngle() {
-        assertEquals(0, scania.getAngle(), 0.000001);
+    public void testSetRampPosition() {
+        assertEquals(0, trailer.getRampPosition(), 0.000001);
 
-        scania.setAngle(50);
-        assertEquals(50, scania.getAngle(), 0.000001);
+        trailer.setRampPosition(50);
+        assertEquals(50, trailer.getRampPosition(), 0.000001);
 
-        scania.setAngle(100);
-        assertEquals(50, scania.getAngle(), 0.000001);
+        trailer.setRampPosition(100);
+        assertEquals(50, trailer.getRampPosition(), 0.000001);
 
+        trailer.setRampPosition(0);
         scania.gas(1);
-        scania.setAngle(0);
-        assertEquals(50, scania.getAngle(), 0.000001);
+        trailer.setRampPosition(50);
+        assertEquals(0, trailer.getRampPosition(), 0.000001);
 
     }
 
     @Test
     public void testIncrementSpeed() {
-        scania.setAngle(70);
-        scania.incrementSpeed(1);
+        trailer.setRampPosition(50);
+        scania.gas(1);
         assertEquals(0, scania.getCurrentSpeed(), 0.000001);
     }
 
