@@ -27,7 +27,7 @@ public class Car implements IVehicle, Movable {
      * @return Returns current speed
      */
     public double getCurrentSpeed(){
-        return parent.getCurrentSpeed();
+        return currentSpeed;
     }
 
     /*** Getter method for number of doors
@@ -65,10 +65,9 @@ public class Car implements IVehicle, Movable {
     /*** Increases the speed of car
      * @param amount of which to increase the speed
      */
-    @Override
     public void incrementSpeed(double amount) {
         if (amount >= 0 && amount <= 1) {
-            currentSpeed = Math.max(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
+            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
         }
     }
 

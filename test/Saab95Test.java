@@ -62,7 +62,7 @@ public class Saab95Test {
     @Test
     public void testIncrementSpeed(){
         saab.incrementSpeed(2);
-        assertEquals(saab.speedFactor()*2 , saab.getCurrentSpeed(), 0.000001);
+        assertEquals(0 , saab.getCurrentSpeed(), 0.000001);
 
         saab.setTurboOn();
         assertEquals(saab.getEnginePower() * 0.01 * 1.3 , saab.speedFactor(), 0.000001);

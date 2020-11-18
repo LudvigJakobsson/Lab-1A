@@ -5,6 +5,7 @@ public class Truck implements IVehicle, Movable {
     private Vehicle parent;
     private Trailer trailer;
     private boolean hasTrailer;
+    private double currentSpeed;
 
     Truck(int nrDoors, double enginePower, Color color, String modelName) {
         this.parent = new Vehicle(nrDoors, enginePower, color, modelName);
@@ -109,7 +110,7 @@ public class Truck implements IVehicle, Movable {
     public void move(){
         parent.move();
         if (hasTrailer) {
-            trailer.setLocation(this.getLocation());
+            trailer.setLocation(getLocation());
         }
     }
 
@@ -146,13 +147,19 @@ public class Truck implements IVehicle, Movable {
         parent.brake(amount);
     }
 
+    /*** Sets a car trailer as trailer
+     * @param capacity Sets the car capacity of car trailer
+     */
     public void setCarTrailer(int capacity){
-        if (hasTrailer = false) {
+        if (hasTrailer == false) {
             this.trailer = new CarTrailer(capacity , this);
             hasTrailer = true;
         }
     }
 
+    /***Sets trailer as a truckbed
+     *
+     */
     public void setTruckBed() {
         if (hasTrailer == false) {
             this.trailer = new TruckBed(this);
@@ -160,10 +167,13 @@ public class Truck implements IVehicle, Movable {
         }
     }
 
+    /***
+     * Getter method for trailer
+     * @return the trailer of the truck.
+     */
     public Trailer getTrailer() {
         return trailer;
     }
-
 
 }
 
